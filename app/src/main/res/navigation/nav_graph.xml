@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.benshapiro.cst.ui.login.LoginFragment"
+        android:label="Login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_graphFragment"
+            app:destination="@id/graphFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/graphFragment"
+        android:name="com.benshapiro.cst.ui.graph.GraphFragment"
+        android:label="Your Credit Score"
+        tools:layout="@layout/fragment_graph">
+        <argument
+            android:name="CreditScore"
+            android:defaultValue="@null"
+            app:argType="com.benshapiro.cst.domain.models.CreditScore"
+            app:nullable="true" />
+    </fragment>
+</navigation>

@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">ClearScoreTask</string>
+    <string name="welcome_to_clearscore">Welcome to ClearScore</string>
+    <string name="enter_user_ref">Please enter your user reference</string>
+    <string name="user_ref_hint">User reference</string>
+    <string name="userRef">CS-SED-655426-708782</string>
+    <string name="login">Login</string>
+    <string name="clearscore_logo">ClearScore Logo</string>
+    <string name="your_credit_score_is">Your credit score is</string>
+    <string name="out_of_700">out of 700</string>
+</resources>
