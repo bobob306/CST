@@ -28,12 +28,6 @@ class GraphFragment: Fragment(){
     ): View? {
         _binding = FragmentGraphBinding.inflate(inflater, container, false)
 
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
         if (viewModel.creditScore == null) {
             Log.d("returning", "yes")
             findNavController().navigateUp()
@@ -54,8 +48,10 @@ class GraphFragment: Fragment(){
         }
 
         binding.returnBtn.setOnClickListener{
-            binding.root.findNavController().navigateUp()
+            findNavController().navigateUp()
         }
+
+        return binding.root
     }
 
 
