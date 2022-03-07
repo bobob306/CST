@@ -1,16 +1,20 @@
 package com.benshapiro.cst.repository
 
+import android.util.Log
 import com.benshapiro.cst.domain.mappers.CreditScoreMapper
 import com.benshapiro.cst.domain.models.CreditScore
-import com.benshapiro.cst.network.NetworkLayer
+import com.benshapiro.cst.network.ApiClient
 import javax.inject.Inject
 
-class Repository @Inject constructor(){
+class Repository @Inject constructor(
+    private val apiClient: ApiClient
+) {
 
     suspend fun getCreditScore(): CreditScore? {
 
-        val request = NetworkLayer.apiClient.getCreditScore()
+        val request = apiClient.getCreditScore()
         if (request.failed || !request.isSuccessful) {
+            Log.d("return req from network", "no")
             return null
         }
 

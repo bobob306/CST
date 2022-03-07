@@ -15,4 +15,6 @@
     <string name="how_to_improve">How to improve your credit score.</string>
     <string name="logout">Logout</string>
     <string name="more_details">More details</string>
+    <string name="improve_your_score">Improve your score</string>
+    <string name="create_new_account">Create new account</string>
 </resources>

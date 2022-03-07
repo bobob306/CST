@@ -29,44 +29,61 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.apply {
-            detScoreTV.text =
-                "Your credit score is: ${viewModel.creditScore?.creditReportInfo?.score ?: "Error"}"
-            scoreBandTV.text =
-                "Your credit score is: ${viewModel.creditScore?.creditReportInfo?.scoreBand ?: "Error"}"
-            scoreBandDescTV.text =
-                "Your credit score is: ${viewModel.creditScore?.creditReportInfo?.equifaxScoreBandDescription ?: "Error"}"
-            val activeTD = viewModel.creditScore?.coachingSummary?.numberOfTodoItems ?: -1
-            toDoTV.text = when {
-                activeTD == 0 -> {
-                    "You have completed all tasks on your account."
-                }
-                activeTD == -1 -> {
-                    "Error"
-                }
-                activeTD == 1 -> {
-                    "You have ${activeTD} task remaining."
-                }
-                else -> {
-                    "You have ${activeTD} tasks remaining."
+        if (viewModel.creditScore == null) {
+            // if there is an error passing the credit score data then navigate up one fragment
+            findNavController().navigateUp()
+        } else {
+            viewModel.creditScoreLiveData.observe(this.viewLifecycleOwner) { creditScore ->
+                binding.apply {
+                    if (creditScore != null) {
+                        detScoreTV.text =
+                            "Your credit score is: ${creditScore.creditReportInfo?.score ?: "Error"}"
+                        scoreBandTV.text =
+                            "Your credit score is: ${creditScore.creditReportInfo?.scoreBand ?: "Error"}"
+                        scoreBandDescTV.text =
+                            "Your credit score is: ${creditScore.creditReportInfo?.equifaxScoreBandDescription ?: "Error"}"
+                        val activeTD = creditScore.coachingSummary?.numberOfTodoItems ?: -1
+                        toDoTV.text = when (activeTD) {
+                            // Here I wanted the grammar to be correct and to catch the error
+                            0 -> {
+                                "You have completed all tasks on your account."
+                            }
+                            -1 -> {
+                                "Error"
+                            }
+                            1 -> {
+                                "You have $activeTD task remaining."
+                            }
+                            else -> {
+                                "You have $activeTD tasks remaining."
+                            }
+                        }
+                    }
                 }
             }
-            returnToGraphBtn.setOnClickListener {
+            binding.returnToGraphBtn.setOnClickListener {
                 findNavController().navigateUp()
             }
-
-            logoutBtn.setOnClickListener {
-                val action = DetailFragmentDirections.actionGlobalLoginFragment()
-                findNavController().navigate(action)
+            // Also not strictly necessary but actually a useful article!
+            binding.improveBtn.setOnClickListener {
+                val uri =
+                    Uri.parse("https://www.clearscore.com/learn/credit-score-and-report/how-to-improve-your-credit-score-in-10-easy-steps/")
+                val intent = Intent(Intent.ACTION_VIEW, uri)
+                startActivity(intent)
             }
-            logoIV.setOnClickListener {
+            binding.logoIV.setOnClickListener {
                 val uri = Uri.parse("https://www.clearscore.com/")
                 val intent = Intent(Intent.ACTION_VIEW, uri)
                 startActivity(intent)
             }
 
         }
+    }
 
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 

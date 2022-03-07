@@ -21,10 +21,11 @@ class LoginViewModel
     private val _creditScoreLiveData = MutableLiveData<CreditScore?>()
     val creditScoreLiveData: LiveData<CreditScore?> = _creditScoreLiveData
 
-    fun clientRefEntered() = viewModelScope.launch {
+    fun clientRefEntered(clientRef: String) = viewModelScope.launch {
         val creditScore = repository.getCreditScore()
         _creditScoreLiveData.postValue(creditScore)
-        if (creditScore == null) {
+        // This is mocking checking the username and password are correct
+        if (creditScore?.creditReportInfo?.clientRef != clientRef) {
             triggerNoData()
         } else {
             triggerNavigate()
@@ -40,9 +41,11 @@ class LoginViewModel
     val eventFlow = eventChannel.receiveAsFlow()
 
     private fun triggerNavigate() = viewModelScope.launch {
+        // this is timed to show for the same amount of time as the animation loads
         eventChannel.send(Event.Navigate("Loading credit information..."))
     }
     private fun triggerNoData() = viewModelScope.launch {
+        // Username is given to you automatically so login fail is because of data connection
         eventChannel.send(Event.NoData("Unsuccessful login attempt, please check data connection."))
     }
 
