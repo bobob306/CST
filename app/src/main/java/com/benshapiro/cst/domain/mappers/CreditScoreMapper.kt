@@ -2,9 +2,19 @@ package com.benshapiro.cst.domain.mappers
 
 import com.benshapiro.cst.domain.models.CreditScore
 import com.benshapiro.cst.network.response.GetCreditScoreResponse
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
+
+@Module
+@InstallIn(SingletonComponent::class)
 
 object CreditScoreMapper {
 
+    @Singleton
+    @Provides
     fun buildFrom(
         response: GetCreditScoreResponse
     ): CreditScore {

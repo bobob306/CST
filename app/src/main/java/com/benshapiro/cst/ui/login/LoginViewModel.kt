@@ -1,6 +1,5 @@
 package com.benshapiro.cst.ui.login
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -22,15 +21,13 @@ class LoginViewModel
     private val _creditScoreLiveData = MutableLiveData<CreditScore?>()
     val creditScoreLiveData: LiveData<CreditScore?> = _creditScoreLiveData
 
-    fun clientRefEntered() = viewModelScope.launch {
-        Log.d("Click", "registered")
+    fun clientRefEntered(clientRef: String) = viewModelScope.launch {
         val creditScore = repository.getCreditScore()
         _creditScoreLiveData.postValue(creditScore)
-        if (creditScore == null) {
-            Log.d("navigating?", "no")
+        // This is mocking checking the username and password are correct
+        if (creditScore?.creditReportInfo?.clientRef != clientRef) {
             triggerNoData()
         } else {
-            Log.d("navigating?", "yes")
             triggerNavigate()
         }
     }
@@ -44,9 +41,11 @@ class LoginViewModel
     val eventFlow = eventChannel.receiveAsFlow()
 
     private fun triggerNavigate() = viewModelScope.launch {
+        // this is timed to show for the same amount of time as the animation loads
         eventChannel.send(Event.Navigate("Loading credit information..."))
     }
     private fun triggerNoData() = viewModelScope.launch {
+        // Username is given to you automatically so login fail is because of data connection
         eventChannel.send(Event.NoData("Unsuccessful login attempt, please check data connection."))
     }
 

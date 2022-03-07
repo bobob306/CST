@@ -1,11 +1,11 @@
 package com.benshapiro.cst.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupActionBarWithNavController
+import com.benshapiro.cst.NavGraphDirections
 import com.benshapiro.cst.R
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -23,7 +23,13 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController)
     }
 
+    fun forceNavigateUp(): Boolean {
+        val action = NavGraphDirections.actionGlobalLoginFragment()
+        navController.navigate(action)
+        return true
+    }
+
     override fun onSupportNavigateUp(): Boolean {
-        return navController.navigateUp() || super.onSupportNavigateUp()
+        return forceNavigateUp() || super.onSupportNavigateUp()
     }
 }

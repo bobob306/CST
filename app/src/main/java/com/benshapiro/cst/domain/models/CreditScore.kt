@@ -2,7 +2,6 @@ package com.benshapiro.cst.domain.models
 
 import java.io.Serializable
 
-// Complete :)
 
 data class CreditScore(
     val accountIDVStatus: String?,

@@ -15,12 +15,13 @@
         android:layout_height="0dp"
         android:indeterminateOnly="false"
         android:progressDrawable="@drawable/circle"
-        app:layout_constraintBottom_toTopOf="@+id/logoIV"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.5"
+        app:layout_constraintHeight_percent="1"
+        app:layout_constraintHorizontal_bias="0.23"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent="0.9"
+        app:layout_constraintWidth_percent="0.5"
         tools:progress="60" />
 
     <TextView
@@ -31,9 +32,9 @@
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintBottom_toTopOf="@+id/scoreTV"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/progressBar"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/progressBar"
         app:layout_constraintTop_toTopOf="@+id/progressBar"
         app:layout_constraintVertical_chainStyle="packed"
         tools:text="Your credit score is" />
@@ -58,8 +59,9 @@
         android:layout_height="75dp"
         android:contentDescription="@string/clearscore_logo"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/detailsBtn"
+        app:layout_constraintStart_toStartOf="@+id/detailsBtn"
+        app:layout_constraintTop_toBottomOf="@+id/detailsBtn"
         app:srcCompat="@drawable/logo_clearscore_1571221948" />
 
     <TextView
@@ -70,9 +72,9 @@
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintBottom_toTopOf="@+id/outOfTV"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/progressBar"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/progressBar"
         app:layout_constraintTop_toBottomOf="@+id/creditScoreTV"
         app:layout_constraintWidth_percent=".5"
         tools:text="NUMBER from vm" />
@@ -84,7 +86,7 @@
         android:text="@string/more_details"
         app:layout_constraintBottom_toTopOf="@+id/logoIV"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progressBar" />
+        app:layout_constraintStart_toEndOf="@+id/progressBar"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

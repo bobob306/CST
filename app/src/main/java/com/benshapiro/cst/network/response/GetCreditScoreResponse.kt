@@ -1,7 +1,6 @@
 package com.benshapiro.cst.network.response
 
-// Complete :)
-
+// Descriptive file name
 data class GetCreditScoreResponse(
     val accountIDVStatus: String?,
     val augmentedCreditScore: Any?,

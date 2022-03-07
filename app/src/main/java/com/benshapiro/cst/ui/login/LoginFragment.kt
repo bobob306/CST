@@ -1,7 +1,8 @@
 package com.benshapiro.cst.ui.login
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,6 +29,10 @@ class LoginFragment : Fragment() {
     ): View? {
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
 
+        /* A way to move navigation to the viewmodel but if data persists in
+        viewmodel between navigation by using collect when returning to the
+        fragment we do not immediately navigate again
+         */
         lifecycleScope.launchWhenStarted {
             viewModel.eventFlow.collect { event ->
                 when (event) {
@@ -57,8 +62,20 @@ class LoginFragment : Fragment() {
 
         binding.apply {
             loginBtn.setOnClickListener {
-                viewModel.clientRefEntered()
+                viewModel.clientRefEntered(loginET.text.toString())
             }
+        }
+        binding.logoIV.setOnClickListener {
+            val uri = Uri.parse("https://www.clearscore.com/")
+            val intent = Intent(Intent.ACTION_VIEW, uri)
+            startActivity(intent)
+        }
+        // If someone did not have an account this would be helpful
+        // Obviously I am providing the login details in this case
+        binding.newAccBtn.setOnClickListener {
+            val uri = Uri.parse("https://app.clearscore.com/signup/")
+            val intent = Intent(Intent.ACTION_VIEW, uri)
+            startActivity(intent)
         }
 
 
@@ -72,8 +89,8 @@ class LoginFragment : Fragment() {
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
         _binding = null
     }
 

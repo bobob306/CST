@@ -2,6 +2,7 @@ package com.benshapiro.cst.network
 
 import retrofit2.Response
 
+// Provide custom responses for different states based on what is returned from get request
 data class SimpleResponse<T>(
     val status: Status,
     val data: Response<T>?,
