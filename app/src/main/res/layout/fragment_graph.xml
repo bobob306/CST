@@ -78,10 +78,10 @@
         tools:text="NUMBER from vm" />
 
     <Button
-        android:id="@+id/returnBtn"
+        android:id="@+id/detailsBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Return"
+        android:text="@string/more_details"
         app:layout_constraintBottom_toTopOf="@+id/logoIV"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

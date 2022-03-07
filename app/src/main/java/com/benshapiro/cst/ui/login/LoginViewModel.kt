@@ -23,14 +23,11 @@ class LoginViewModel
     val creditScoreLiveData: LiveData<CreditScore?> = _creditScoreLiveData
 
     fun clientRefEntered() = viewModelScope.launch {
-        Log.d("Click", "registered")
         val creditScore = repository.getCreditScore()
         _creditScoreLiveData.postValue(creditScore)
         if (creditScore == null) {
-            Log.d("navigating?", "no")
             triggerNoData()
         } else {
-            Log.d("navigating?", "yes")
             triggerNavigate()
         }
     }

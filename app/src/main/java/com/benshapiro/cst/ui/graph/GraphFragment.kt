@@ -29,11 +29,8 @@ class GraphFragment: Fragment(){
         _binding = FragmentGraphBinding.inflate(inflater, container, false)
 
         if (viewModel.creditScore == null) {
-            Log.d("returning", "yes")
             findNavController().navigateUp()
         } else {
-            Log.d("progress", "${viewModel.creditScore!!.creditReportInfo!!.score}")
-            Log.d("accountIDVStatus", "${viewModel.creditScore!!.accountIDVStatus}")
 
             binding.scoreTV.text = "${viewModel.creditScore!!.creditReportInfo!!.score}"
 
@@ -47,8 +44,10 @@ class GraphFragment: Fragment(){
                 .start()
         }
 
-        binding.returnBtn.setOnClickListener{
-            findNavController().navigateUp()
+        binding.detailsBtn.setOnClickListener{
+            val action = GraphFragmentDirections.actionGraphFragmentToDetailFragment2()
+            action.creditScore = viewModel.creditScore
+            findNavController().navigate(action)
         }
 
         return binding.root

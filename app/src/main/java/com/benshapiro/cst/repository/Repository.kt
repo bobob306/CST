@@ -13,7 +13,6 @@ class Repository @Inject constructor(){
 
         val request = NetworkLayer.apiClient.getCreditScore()
         if (request.failed || !request.isSuccessful) {
-            Log.d("return req from network", "no")
             return null
         }
 

@@ -8,4 +8,11 @@
     <string name="clearscore_logo">ClearScore Logo</string>
     <string name="your_credit_score_is">Your credit score is</string>
     <string name="out_of_700">out of 700</string>
+    <string name="return_to_graph">Return to graph</string>
+    <string name="your_credit_score_band_is">Your credit score band is</string>
+    <string name="your_credit_score_description_is">Your credit score description is</string>
+    <string name="you_have_tasks_outstanding">You have tasks outstanding</string>
+    <string name="how_to_improve">How to improve your credit score.</string>
+    <string name="logout">Logout</string>
+    <string name="more_details">More details</string>
 </resources>
