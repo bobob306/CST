@@ -2,13 +2,11 @@ package com.benshapiro.cst.ui.graph
 
 import android.animation.ObjectAnimator
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.benshapiro.cst.databinding.FragmentGraphBinding
 import dagger.hilt.android.AndroidEntryPoint

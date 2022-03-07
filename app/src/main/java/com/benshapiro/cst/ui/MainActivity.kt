@@ -3,9 +3,7 @@ package com.benshapiro.cst.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.benshapiro.cst.NavGraphDirections
 import com.benshapiro.cst.R

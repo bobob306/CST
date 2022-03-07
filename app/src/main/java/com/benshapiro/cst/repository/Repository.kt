@@ -1,10 +1,8 @@
 package com.benshapiro.cst.repository
 
-import android.util.Log
 import com.benshapiro.cst.domain.mappers.CreditScoreMapper
 import com.benshapiro.cst.domain.models.CreditScore
 import com.benshapiro.cst.network.NetworkLayer
-import com.benshapiro.cst.network.SimpleCreditScoreCache
 import javax.inject.Inject
 
 class Repository @Inject constructor(){
