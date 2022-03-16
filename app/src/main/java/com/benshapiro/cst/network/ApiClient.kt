@@ -14,6 +14,8 @@ class ApiClient @Inject constructor(
     }
 
     // check responses in simple response class, particularly helpful for failure
+    // inline fun subs the body straight into the places the function is called
+    // T is generic type
     private inline fun <T> safeApiCall(apiCall: () -> Response<T>): SimpleResponse<T> {
         return try {
             SimpleResponse.success(apiCall.invoke())

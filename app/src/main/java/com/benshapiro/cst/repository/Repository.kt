@@ -13,6 +13,7 @@ class Repository @Inject constructor(
     suspend fun getCreditScore(): CreditScore? {
 
         val request = apiClient.getCreditScore()
+        // Probably not necessary to have the or, however it then catches anything not successful
         if (request.failed || !request.isSuccessful) {
             Log.d("return req from network", "no")
             return null
