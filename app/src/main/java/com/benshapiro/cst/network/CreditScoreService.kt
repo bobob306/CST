@@ -13,7 +13,7 @@ interface CreditScoreService {
     @GET("/endpoint.json")
     suspend fun getCreditScore(
         // Tells the app what "form" should the returned data take
-    // use response to handle failures/errors better
+    // use response (rather than call) to handle failures/errors better
     ): Response<GetCreditScoreResponse>
 
 }
