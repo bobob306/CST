@@ -40,6 +40,7 @@ data class SimpleResponse<T>(
     val body: T
         get() = this.data!!.body()!!
 
+    // did not implement this
     val bodyNullable: T?
         get() = this.data?.body()
 }
